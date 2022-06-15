@@ -1,6 +1,5 @@
 NPM 
 
-
 NPM INIT:Create package.json(manifest) file ,list dependencies
 ========================
 NPM INSTALL <package name> --save
