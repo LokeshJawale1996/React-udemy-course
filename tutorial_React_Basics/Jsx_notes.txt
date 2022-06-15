@@ -1,0 +1,549 @@
+
+1)JSX RULES
+*return single element*
+it means that JSX elements must be wrapped in an single enclosed tag
+=====================
+div/section/article or fragment
+======================
+*use camelCase for html attribute*
+onClick instead of onclick
+=======================
+*className instead of class*
+className is used instead of class in JSX
+========================
+close every element
+closing  is required for every html tag
+=====================
+
+/ function Greeting() {
+//   return (
+//     <div>
+//       {/* <h1>This is the start of React Learning</h1>; */}
+//       {/* <Person />
+//       <Message /> */}
+//     </div>
+//   );
+// }
+
+// const Person = () => <h1>Lokesh jawale</h1>;
+// const Message = () => <p>This is my message</p>;
+
+// const Greeting = () => {
+//   return React.createElement(
+//     "div",
+//     {},
+//     React.createElement("h1", {}, "This is the start of React Learning")
+//   );
+// };
+===============================================
+*formatting*
+1)if you return as below you need to add opening tag in return line
+otherwise automatically semi colon is generated and code will not work
+
+function Greeting() {
+  return <div>
+            <h1>Hello World</h1>
+         </div>
+      );
+}
+
+2) and if you add opening moon bracket after return then no need to add opening tag on same line 
+function Greeting() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  );
+}
+============================================================================================
+============================================================================================
+2)JSX NESTED components
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+//nested components React tools
+function Greeting() {
+  return (
+    <div>
+      <Person />
+      <Message />
+    </div>
+  );
+}
+
+const Person = () => <h1>Lokesh Jawale</h1>;
+
+const Message = () => <p>this is my message</p>;
+ReactDOM.render(<Greeting />, document.getElementById("root"));
+============================================================================================
+============================================================================================
+3)
+============================================================================================
+============================================================================================
+MINI BOOK SHOP PROJECT
+index.js file
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+function BookList() {
+  return (
+    <section>
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+    </section>
+  );
+}
+
+const Book = () => {
+  return (
+    <section>
+      <Image></Image>
+      <Title />
+      <Author />
+    </section>
+  );
+};
+
+const Image = () => (
+  <img src="https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg" />
+);
+
+const Title = () => <h1>I Love You to the Moon and Back</h1>;
+
+const Author = () => <h4>Amelia Hepworth</h4>;
+ReactDOM.render(<BookList />, document.getElementById("root"));
+
+=======================================================================================
+=========================================================================================
+**HOW TO WORK WITH JAVASCRIPT IN JSX**
+
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+
+function BookList() {
+  return (
+    <section className="booklist">
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+    </section>
+  );
+}
+const Author = "Amelia Hepworth";
+const Book = () => {
+  const Title = "I Love You to the Moon and Back";
+  return (
+    <article className="book">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg" />
+      <h1>{Title}</h1>
+      <h4>{Author.toUpperCase()}</h4>
+      <p>{6 + 6}</p>
+    </article>
+  );
+};
+ReactDOM.render(<BookList />, document.getElementById("root"));
+
+=======================================================================================
+=========================================================================================
+***PROPS***
+
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+
+const firstBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg",
+  title: "I Love You to the Moon and Back",
+  author: "Amelia Hepworth",
+};
+
+const secondBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/518E56QKfQL._SX367_BO1,204,203,200_.jpg",
+  title: "Our Class is a Family ",
+  author: "Shannon Olsen",
+};
+
+function BookList() {
+  return (
+    <section className="booklist">
+      <Book
+        img={firstBook.img}
+        title={firstBook.title}
+        author={firstBook.author}
+      />
+      <Book
+        img={secondBook.img}
+        title={secondBook.title}
+        author={secondBook.author}
+      />
+    </section>
+  );
+}
+
+const Book = (props) => {
+  return (
+    <article className="book">
+      <img src={props.img} />
+      <h1>{props.title}</h1>
+      <h4>{props.author}</h4>
+    </article>
+  );
+};
+ReactDOM.render(<BookList />, document.getElementById("root"));
+=======================================================================================
+=========================================================================================
+***PROPS-DESTRUCTING***OBJECT DESTRUCTING
+
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+
+const firstBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg",
+  title: "I Love You to the Moon and Back",
+  author: "Amelia Hepworth",
+};
+
+const secondBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/518E56QKfQL._SX367_BO1,204,203,200_.jpg",
+  title: "Our Class is a Family ",
+  author: "Shannon Olsen",
+};
+
+function BookList() {
+  return (
+    <section className="booklist">
+      <Book
+        img={firstBook.img}
+        title={firstBook.title}
+        author={firstBook.author}
+      />
+      <Book
+        img={secondBook.img}
+        title={secondBook.title}
+        author={secondBook.author}
+      />
+    </section>
+  );
+}
+ 
+ //DESTRUCTING
+const Book = ({ img, title, author }) => {
+  // const { img, title, author } = props;
+  return (
+    <article className="book">
+      <img src={img} />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
+    </article>
+  );
+};
+ReactDOM.render(<BookList />, document.getElementById("root"));
+
+======================================================================================
+======================================================================================
+***PROPS-CHILDREN***
+
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+
+const firstBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg",
+  title: "I Love You to the Moon and Back",
+  author: "Amelia Hepworth",
+};
+
+const secondBook = {
+  img: "https://images-na.ssl-images-amazon.com/images/I/518E56QKfQL._SX367_BO1,204,203,200_.jpg",
+  title: "Our Class is a Family ",
+  author: "Shannon Olsen",
+};
+
+function BookList() {
+  return (
+    <section className="booklist">
+      <Book
+        img={firstBook.img}
+        title={firstBook.title}
+        author={firstBook.author}
+      >
+        <p>
+          orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+          ea commodo consequat.
+        </p>
+      </Book>
+      <Book
+        img={secondBook.img}
+        title={secondBook.title}
+        author={secondBook.author}
+      />
+    </section>
+  );
+}
+
+const Book = (props) => {
+  const { img, title, author, children } = props;
+  return (
+    <article className="book">
+      <img src={img} />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
+      {props.children}
+    </article>
+  );
+};
+ReactDOM.render(<BookList />, document.getElementById("root"));
+===================================================================================
+===================================================================================
+***SIMPLE LIST***
+
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+const books = [
+  {
+    img: "https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg",
+    title: "I Love You to the Moon and Back",
+    author: "Amelia Hepworth",
+  },
+
+  {
+    img: "https://images-na.ssl-images-amazon.com/images/I/518E56QKfQL._SX367_BO1,204,203,200_.jpg",
+    title: "Our Class is a Family ",
+    author: "Shannon Olsen",
+  },
+];
+
+const names = ["lokesh", "kartik", "dhanaji"];
+const newName = names.map((name1) => {
+  return <h1>{name1}</h1>;
+});
+console.log(newName);
+function BookList() {
+  return <section className="booklist">{newName}</section>;
+}
+
+const Book = ({ img, title, author }) => {
+  return (
+    <article className="book">
+      <img src={img} />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
+    </article>
+  );
+};
+ReactDOM.render(<BookList />, document.getElementById("root"));
+=========================================================================
+===========================================================================
+***KEY PROP SPREAD OPERATOR***
+
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+const books = [
+  {
+    id: 1,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg",
+    title: "I Love You to the Moon and Back",
+    author: "Amelia Hepworth",
+  },
+
+  {
+    id: 2,
+    img: "https://images-na.ssl-images-amazon.com/images/I/518E56QKfQL._SX367_BO1,204,203,200_.jpg",
+    title: "Our Class is a Family ",
+    author: "Shannon Olsen",
+  },
+  {
+    id: 3,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51d-0+tB4sL._SX386_BO1,204,203,200_.jpg",
+    title: "Brilliant Brain",
+    author: "Lokesh jawale",
+  },
+];
+
+function BookList() {
+  return (
+    <section className="booklist">
+      {books.map((book) => {
+        return <Book key={book.id} {...book}></Book>;
+      })}
+    </section>
+  );
+}
+
+const Book = ({ img, title, author }) => {
+  // const { img, title, author } = props.book;
+  return (
+    <article className="book">
+      <img src={img} />
+      <h1>{title}</h1>
+      <h4>{author}</h4>
+    </article>
+  );
+};
+ReactDOM.render(<BookList />, document.getElementById("root"));
+
+=====================================================================
+=======================================================================
+***Event Basics***
+
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+const books = [
+  {
+    id: 1,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg",
+    title: "I Love You to the Moon and Back",
+    author: "Amelia Hepworth",
+  },
+
+  {
+    id: 2,
+    img: "https://images-na.ssl-images-amazon.com/images/I/518E56QKfQL._SX367_BO1,204,203,200_.jpg",
+    title: "Our Class is a Family ",
+    author: "Shannon Olsen",
+  },
+  {
+    id: 3,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51d-0+tB4sL._SX386_BO1,204,203,200_.jpg",
+    title: "Brilliant Brain",
+    author: "Lokesh jawale",
+  },
+];
+
+function BookList() {
+  return (
+    <section className="booklist">
+      {books.map((book) => {
+        return <Book key={book.id} {...book}></Book>;
+      })}
+    </section>
+  );
+}
+
+const Book = ({ img, title, author }) => {
+  // const { img, title, author } = props.book;
+  const clickHandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+    alert("Hello Loki");
+  };
+  const complexExample = (author) => {
+    console.log(author);
+  };
+  return (
+    <article
+      className="book"
+      onMouseOver={() => {
+        console.log(title);
+      }}
+    >
+      <img src={img} />
+      <h1 onClick={() => console.log(title)}>{title}</h1>
+      <h4>{author}</h4>
+      <button onClick={clickHandler}>reference Example</button>
+      <button onClick={() => complexExample(author)}>Complex Example</button>
+    </article>
+  );
+};
+ReactDOM.render(<BookList />, document.getElementById("root"));
+
+===========================================================================
+==============================================================================
+***Import Export Statements**8
+
+books.js
+
+export const data = [
+  {
+    id: 1,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51CvNtFCbZL._SX481_BO1,204,203,200_.jpg",
+    title: "I Love You to the Moon and Back",
+    author: "Amelia Hepworth",
+  },
+
+  {
+    id: 2,
+    img: "https://images-na.ssl-images-amazon.com/images/I/518E56QKfQL._SX367_BO1,204,203,200_.jpg",
+    title: "Our Class is a Family ",
+    author: "Shannon Olsen",
+  },
+  {
+    id: 3,
+    img: "https://images-na.ssl-images-amazon.com/images/I/51d-0+tB4sL._SX386_BO1,204,203,200_.jpg",
+    title: "Brilliant Brain",
+    author: "Lokesh jawale",
+  },
+];
+
+=================
+Book.js
+
+import React from "react";
+const Book = ({ img, title, author }) => {
+  // const { img, title, author } = props.book;
+  const clickHandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+    alert("Hello Loki");
+  };
+  const complexExample = (author) => {
+    console.log(author);
+  };
+  return (
+    <article
+      className="book"
+      onMouseOver={() => {
+        console.log(title);
+      }}
+    >
+      <img src={img} />
+      <h1 onClick={() => console.log(title)}>{title}</h1>
+      <h4>{author}</h4>
+      <button onClick={clickHandler}>reference Example</button>
+      <button onClick={() => complexExample(author)}>Complex Example</button>
+    </article>
+  );
+};
+export default Book;
+
+============
+index.js
+import React from "react";
+import ReactDOM from "react-dom";
+//CSS
+import "./index.css";
+//books data
+import { data } from "./books";
+//Book
+import SpecificBook from "./Book";
+
+function BookList() {
+  return (
+    <section className="booklist">
+      {data.map((book) => {
+        return <SpecificBook key={book.id} {...book}></SpecificBook>;
+      })}
+    </section>
+  );
+}
+
+ReactDOM.render(<BookList />, document.getElementById("root"));
+
+=============================================================================
+==============================================================================
+
+
