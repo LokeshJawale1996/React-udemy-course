@@ -1,0 +1,17 @@
+NPM 
+
+
+NPM INIT:Create package.json(manifest) file ,list dependencies
+========================
+NPM INSTALL <package name> --save
+Install Package Locally(default) and add to package.json
+========================
+NPM INSTALL <package name> -g
+Install Package Globally (access anywhere) SUDO
+==========================
+NPM INSTALL <package name> --save -dev
+use it only in development
+=========================================================
+========================================================
+
+
