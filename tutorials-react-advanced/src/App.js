@@ -1,7 +1,6 @@
-import React, { StrictMode } from "react";
-import data from ".";
+import React from "react";
 
-import SetUp from "./tutorial/1-useState/setup/3-useState-array";
+import SetUp from "./tutorial/1-useState/setup/5-useState-counter";
 
 function App() {
   return (
