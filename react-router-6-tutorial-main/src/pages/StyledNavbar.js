@@ -20,12 +20,12 @@ const Navbar = () => {
       >
         Products
       </NavLink>
-      {/* <NavLink
-        to='/login'
-        className={({ isActive }) => (isActive ? 'link active' : 'link')}
+      <NavLink
+        to="/login"
+        className={({ isActive }) => (isActive ? "link active" : "link")}
       >
         Login
-      </NavLink> */}
+      </NavLink>
     </nav>
   );
 };
